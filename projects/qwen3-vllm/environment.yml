@@ -1,0 +1,10 @@
+name: qwen3-vllm
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    - vllm==0.8.5.post1
+    - huggingface-hub[hf_transfer]==0.30.1
