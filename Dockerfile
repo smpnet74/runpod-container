@@ -54,9 +54,10 @@ RUN mkdir -p /home/ubuntu/.conda && \
     chown -R ubuntu:ubuntu /home/ubuntu/.local && \
     chown ubuntu:ubuntu /home/ubuntu/.bashrc
 
-# Create a workspace directory
-RUN mkdir -p /workspace
-WORKDIR /workspace
+# Create a projects directory in the ubuntu user's home
+RUN mkdir -p /home/ubuntu/projects && \
+    chown -R ubuntu:ubuntu /home/ubuntu/projects
+WORKDIR /home/ubuntu/projects
 
 # Expose SSH port
 EXPOSE 22
