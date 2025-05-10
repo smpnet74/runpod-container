@@ -1,5 +1,5 @@
 # Ignore SSH keys
-authorized_keys
+#authorized_keys
 
 # Ignore common files
 .DS_Store
