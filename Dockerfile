@@ -28,18 +28,13 @@ RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
 RUN mkdir -p /home/ubuntu/.ssh && chmod 700 /home/ubuntu/.ssh && chown ubuntu:ubuntu /home/ubuntu/.ssh
 
 COPY setup_ssh.sh /root/setup_ssh.sh
+COPY authorized_keys /root/.ssh/authorized_keys
+COPY authorized_keys /home/ubuntu/.ssh/authorized_keys
 
-# Create empty authorized_keys files if they don't exist
-RUN touch /root/.ssh/authorized_keys && \
-    touch /home/ubuntu/.ssh/authorized_keys && \
-    chmod +x /root/setup_ssh.sh && \
+RUN chmod +x /root/setup_ssh.sh && \
     chmod 600 /root/.ssh/authorized_keys && \
     chmod 600 /home/ubuntu/.ssh/authorized_keys && \
     chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
-
-# Copy authorized_keys if it exists (will be skipped in CI/CD if file doesn't exist)
-COPY authorized_keys* /root/.ssh/
-COPY authorized_keys* /home/ubuntu/.ssh/
 
 # Install Miniconda
 RUN curl -sSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh && \
