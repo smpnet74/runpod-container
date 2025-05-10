@@ -1,0 +1,11 @@
+# Ignore SSH keys
+authorized_keys
+
+# Ignore common files
+.DS_Store
+*.log
+*.swp
+*.swo
+
+# Ignore Docker build artifacts
+.dockerignore
