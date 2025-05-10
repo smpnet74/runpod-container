@@ -46,10 +46,12 @@ ENV PATH="/opt/conda/bin:${PATH}"
 
 # Set up conda for ubuntu user with a simpler approach
 RUN mkdir -p /home/ubuntu/.conda && \
-    echo 'export PATH="/opt/conda/bin:$PATH"' >> /home/ubuntu/.bashrc && \
+    mkdir -p /home/ubuntu/.local/bin && \
+    echo 'export PATH="/home/ubuntu/.local/bin:/opt/conda/bin:$PATH"' >> /home/ubuntu/.bashrc && \
     echo '. /opt/conda/etc/profile.d/conda.sh' >> /home/ubuntu/.bashrc && \
     echo 'conda activate base' >> /home/ubuntu/.bashrc && \
     chown -R ubuntu:ubuntu /home/ubuntu/.conda && \
+    chown -R ubuntu:ubuntu /home/ubuntu/.local && \
     chown ubuntu:ubuntu /home/ubuntu/.bashrc
 
 # Create a workspace directory
