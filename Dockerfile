@@ -57,6 +57,10 @@ RUN mkdir -p /home/ubuntu/.conda && \
 # Create a projects directory in the ubuntu user's home
 RUN mkdir -p /home/ubuntu/projects && \
     chown -R ubuntu:ubuntu /home/ubuntu/projects
+
+# Copy the projects directory contents from host to container
+COPY --chown=ubuntu:ubuntu projects/ /home/ubuntu/projects/
+
 WORKDIR /home/ubuntu/projects
 
 # Expose SSH port
